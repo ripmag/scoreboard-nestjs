@@ -10,7 +10,7 @@ export class CountersService {
     }
 
     getAll() {
-        throw new Error('Emulate get info from DB');
+        // throw new Error('Emulate get info from DB');
         return this.counters;
     }
 }
