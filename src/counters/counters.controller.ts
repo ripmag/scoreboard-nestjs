@@ -1,12 +1,13 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { CountersService } from './counters.service';
+import { CreateCounterDTO } from './dto/create-counter-dto';
 
 @Controller('counters')
 export class CountersController {
     constructor (private countersService: CountersService) {}
     @Post('create')
-    createCounter() {
-        return this.countersService.create(1);
+    createCounter(@Body() createCounterDTO: CreateCounterDTO) {
+        return this.countersService.create(createCounterDTO);
     }
 
     @Get('getAllCounters')

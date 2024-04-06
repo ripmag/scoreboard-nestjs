@@ -1,0 +1,11 @@
+### Get counters
+GET http://localhost:3000/counters/getAllCounters
+
+### create counter
+POST http://localhost:3000/counters/create
+Content-Type: application/json
+
+{
+    "counter": 0,
+    "comment": "Opa"
+}
