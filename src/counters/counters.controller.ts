@@ -15,18 +15,18 @@ export class CountersController {
         return this.countersService.getAll();
     }
 
-    @Post (':id')
-    add() {
-        return 'add';
-    }
+    // @Post (':id')
+    // add() {
+    //     return 'add';
+    // }
 
-    @Post (':id')
-    sub() {
-        return 'sub';
-    }
+    // @Post (':id')
+    // sub() {
+    //     return 'sub';
+    // }
 
-    @Post (':id')
-    reset() {
-        return 'reset';
-    }
+    // @Post (':id')
+    // reset() {
+    //     return 'reset';
+    // }
 }
