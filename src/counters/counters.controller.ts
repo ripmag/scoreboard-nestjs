@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
 import { CountersService } from './counters.service';
 import { CreateCounterDTO } from './dto/create-counter-dto';
 
@@ -12,7 +12,16 @@ export class CountersController {
 
     @Get('getAllCounters')
     getAllCounters() {
-        return this.countersService.getAll();
+        try {
+            return this.countersService.getAll();            
+        } catch (error) {
+            throw new HttpException (
+                'Emulate error get data',
+                HttpStatus.INTERNAL_SERVER_ERROR,
+                {cause: error},
+            );
+        }
+        
     }
 
     // @Post (':id')
