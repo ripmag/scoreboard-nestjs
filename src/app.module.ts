@@ -7,6 +7,9 @@ import { CountersController } from './counters/counters.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Counter } from './counters/counter.entity';
+import { EventsGateway } from './events/events.gateway';
+import { EventsModule } from './events/events.module';
+import { EventsService } from './events/events.service';
 
 @Module({
   imports: [
@@ -22,9 +25,10 @@ import { Counter } from './counters/counter.entity';
       logging: true,
     }),
     CountersModule,
+    EventsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, EventsGateway,EventsService],
 })
 export class AppModule implements NestModule {
   // constructor (private dataSource: DataSource) {}

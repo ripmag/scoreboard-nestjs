@@ -9,6 +9,7 @@ import { Counter } from './counter.entity';
   controllers: [CountersController],
   providers: [
     CountersService,
-  ]
+  ],
+  exports: [CountersService],
 })
 export class CountersModule {}
