@@ -1,6 +1,9 @@
 ### Get counters
 GET http://localhost:3000/counters/getAllCounters
 
+### Get counter by ID
+GET http://localhost:3000/counters/1
+
 ### create counter
 POST http://localhost:3000/counters/create
 Content-Type: application/json

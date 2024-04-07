@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Post } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, ParseIntPipe, Post } from '@nestjs/common';
 import { CountersService } from './counters.service';
 import { CreateCounterDTO } from './dto/create-counter-dto';
 
@@ -24,10 +24,10 @@ export class CountersController {
         
     }
 
-    // @Post (':id')
-    // add() {
-    //     return 'add';
-    // }
+    @Get (':id')
+    fineOne(@Param('id', ParseIntPipe) id: number) {
+        return `get by ID - ${typeof id}`;
+    }
 
     // @Post (':id')
     // sub() {
