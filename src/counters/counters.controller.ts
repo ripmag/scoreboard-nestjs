@@ -4,7 +4,10 @@ import { CreateCounterDTO } from './dto/create-counter-dto';
 
 @Controller('counters')
 export class CountersController {
-    constructor (private countersService: CountersService) {}
+    constructor (
+        private countersService: CountersService,        
+        ) {}
+
     @Post('create')
     createCounter(@Body() createCounterDTO: CreateCounterDTO) {
         return this.countersService.create(createCounterDTO);

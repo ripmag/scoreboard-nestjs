@@ -9,6 +9,6 @@ POST http://localhost:3000/counters/create
 Content-Type: application/json
 
 {
-    "counter": 0,
-    "comment": "Opa"
+    "counter": 2,
+    "comment": "New"
 }
