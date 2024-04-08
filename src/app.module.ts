@@ -10,6 +10,8 @@ import { Counter } from './counters/counter.entity';
 import { EventsGateway } from './events/events.gateway';
 import { EventsModule } from './events/events.module';
 import { EventsService } from './events/events.service';
+import { GamesModule } from './games/games.module';
+import { GamesController } from './games/games.controller';
 
 @Module({
   imports: [
@@ -26,6 +28,7 @@ import { EventsService } from './events/events.service';
     }),
     CountersModule,
     EventsModule,
+    GamesModule,
   ],
   controllers: [AppController],
   providers: [AppService, EventsGateway,EventsService],
@@ -37,6 +40,6 @@ export class AppModule implements NestModule {
       .apply(LoggerMiddleware)
       // .forRoutes('counters');  //routes option
       // .forRoutes({path: 'counters/*', method: RequestMethod.GET}); // with method option
-      .forRoutes(CountersController);
+      .forRoutes(CountersController, GamesController);
   }
 }
