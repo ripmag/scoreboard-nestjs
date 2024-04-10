@@ -14,7 +14,7 @@ export class GameEntity {
     @Column()
     team2Name: string;
 
-    @Column()
+    @Column('text', {array: true, nullable: true})
     setsScore: string[];
 
     @Column()

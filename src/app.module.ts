@@ -7,6 +7,7 @@ import { CountersController } from './counters/counters.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Counter } from './counters/counter.entity';
+import { GameEntity } from './games/game-entity';
 import { EventsGateway } from './events/events.gateway';
 import { EventsModule } from './events/events.module';
 import { EventsService } from './events/events.service';
@@ -22,7 +23,7 @@ import { GamesController } from './games/games.controller';
       port: 5432,
       username: 'postgres',
       password: '00000000',
-      entities: [Counter],
+      entities: [Counter, GameEntity],
       synchronize: true,
       logging: true,
     }),

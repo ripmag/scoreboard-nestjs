@@ -12,3 +12,21 @@ Content-Type: application/json
     "counter": 2,
     "comment": "New"
 }
+
+### Get games
+GET http://localhost:3000/games/getGames
+
+### Get game
+GET http://localhost:3000/games/3
+
+### Get game
+POST http://localhost:3000/games/3/addPointTeam1
+
+### create game
+POST http://localhost:3000/games/createGame
+Content-Type: application/json
+
+{
+    "counter": 2,
+    "comment": "New"
+}
