@@ -9,9 +9,8 @@ export class GamesController {
     ) { }
 
     @Post('createGame')
-    createGame(): number {
-        this.gamesService.create();
-        return 1;
+    createGame(): Promise<GameEntity> {
+        return this.gamesService.create();        
     }
 
     @Get('getGames')
