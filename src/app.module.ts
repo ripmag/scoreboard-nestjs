@@ -8,6 +8,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { Counter } from './counters/counter.entity';
 import { GameEntity } from './games/game-entity';
+import { dataSourceOptions } from 'DB/data-source';
 import { EventsGateway } from './events/events.gateway';
 import { EventsModule } from './events/events.module';
 import { EventsService } from './events/events.service';
@@ -16,17 +17,7 @@ import { GamesController } from './games/games.controller';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      database: 'scoreboard',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: '00000000',
-      entities: [Counter, GameEntity],
-      synchronize: true,
-      logging: true,
-    }),
+    TypeOrmModule.forRoot(dataSourceOptions),
     CountersModule,
     EventsModule,
     GamesModule,

@@ -22,4 +22,13 @@ export class GameEntity {
 
     @Column()
     team2Score: number;
+
+    @Column({default: 0})
+    setsWinTeam1: number;
+
+    @Column({default: 0})
+    setsWinTeam2: number;
+
+    @Column({default: false})
+    isGameOver: boolean;
 }

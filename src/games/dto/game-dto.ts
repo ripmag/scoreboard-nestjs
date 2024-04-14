@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, isNumber } from "class-validator";
+import { IsBoolean, IsNotEmpty, IsNumber, IsString, isNumber } from "class-validator";
 
 export class GameDTO {
 
@@ -19,4 +19,13 @@ export class GameDTO {
 
     @IsNumber()
     team2Score: number;
+
+    @IsNumber()
+    setsWinTeam1: number;
+
+    @IsNumber()
+    setsWinTeam2: number;
+
+    @IsBoolean()
+    isGameOver: boolean;
 }
