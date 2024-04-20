@@ -28,4 +28,9 @@ export class GamesController {
         return this.gamesService.addPointTeam1(params.id);
     }
 
+    @Post(':id/addPointTeam2')
+    addPointTeam2(@Param() params: any): Promise<GameEntity> {        
+        return this.gamesService.addPointTeam2(params.id);
+    }
+
 }

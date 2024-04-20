@@ -20,7 +20,10 @@ GET http://localhost:3000/games/getGames
 GET http://localhost:3000/games/3
 
 ### Get game
-POST http://localhost:3000/games/3/addPointTeam1
+POST http://localhost:3000/games/2/addPointTeam1
+
+### Get game
+POST http://localhost:3000/games/2/addPointTeam2
 
 ### create game
 POST http://localhost:3000/games/createGame
