@@ -22,7 +22,7 @@ export class GamesService {
         // game.team2Score = gameDTO.team2Score;
 
         game.gameName = 'gameName';
-        game.setsScore = ['setsScore'];
+        game.setsScore = [];
         game.team1Name = 'team1Name';
         game.team2Name = 'team2Name';
         game.team1Score = 0;
@@ -42,6 +42,23 @@ export class GamesService {
                 id: id,
             }
         });
+    }
+
+    async updateInfo(id: number, gameUpdate: GameDTO): Promise<GameEntity> {
+        let game = await this.getGame(id);
+        if (gameUpdate.gameName) {
+            game.gameName = gameUpdate.gameName;
+        }
+
+        if (gameUpdate.team1Name) {
+            game.team1Name = gameUpdate.team1Name;
+        }
+
+        if (gameUpdate.team2Name) {
+            game.team2Name = gameUpdate.team2Name;
+        }
+
+        return await this.gameRepository.save(game);
     }
 
     async addPointTeam1(id: number): Promise<GameEntity> {
