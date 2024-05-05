@@ -103,6 +103,18 @@ export class GamesService {
         return await this.gameRepository.save(game);
     }
 
+    async resetScore(id: number): Promise<GameEntity> {
+        let game = await this.getGame(id);
+        game.setsWinTeam1 = 0;
+        game.setsWinTeam2 = 0;
+        game.team1Score = 0;
+        game.team2Score = 0;
+        game.setsScore = [];
+        game.isGameOver = false;
+
+        return await this.gameRepository.save(game);
+    }
+
     isGameOver(game: GameEntity): boolean {
         if (game.isGameOver) return true;
         

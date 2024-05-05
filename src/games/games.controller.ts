@@ -47,4 +47,9 @@ export class GamesController {
         return this.gamesService.updateInfo(id, gameUpdate);
     }
 
+    @Post(':id/reset')
+    resetScore(@Param() params: any): Promise<GameEntity> {
+        return this.gamesService.resetScore(params.id);
+    }
+
 }
