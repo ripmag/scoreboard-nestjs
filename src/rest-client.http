@@ -19,6 +19,9 @@ GET http://localhost:3000/games/getGames
 ### Get game
 GET http://localhost:3000/games/3
 
+### Delete game
+DELETE http://localhost:3000/games/2
+
 ### Get game
 POST http://localhost:3000/games/2/addPointTeam1
 

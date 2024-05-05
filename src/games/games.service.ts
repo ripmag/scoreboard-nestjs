@@ -44,6 +44,18 @@ export class GamesService {
         });
     }
 
+    async deleteGame(id: number): Promise<boolean> {
+        const gameToRemove = await this.getGame(id);
+
+        if (!gameToRemove) {
+            // return false;
+            throw new Error(`Игра с id ${id} не найдена.`);            
+        }
+        const x = await this.gameRepository.remove(gameToRemove);
+        console.log(`Игра с id ${id} успешно удалена.`, x);
+        return true
+    }
+
     async updateInfo(id: number, gameUpdate: GameDTO): Promise<GameEntity> {
         let game = await this.getGame(id);
         if (gameUpdate.gameName) {
