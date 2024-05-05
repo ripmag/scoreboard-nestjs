@@ -9,7 +9,7 @@ export class GamesController {
         private gamesService: GamesService,
     ) { }
 
-    @Post('createGame')
+    @Get('createGame')
     createGame(): Promise<GameEntity> {
         return this.gamesService.create();        
     }
