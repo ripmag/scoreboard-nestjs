@@ -1,14 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { GameEntity } from './game-entity';
 import { GameDTO } from './dto/game-dto';
-
+import { GamesGateway } from './games.gateway';
 @Injectable()
 export class GamesService {
     constructor(
         @InjectRepository(GameEntity)
         private readonly gameRepository: Repository<GameEntity>,
+        private readonly gamesGateway: GamesGateway
     ) { }
 
     async create(): Promise<GameEntity> {
@@ -70,7 +71,10 @@ export class GamesService {
             game.team2Name = gameUpdate.team2Name;
         }
 
-        return await this.gameRepository.save(game);
+        const savedGame = await this.gameRepository.save(game);
+        this.gamesGateway.socketUpdateGame(savedGame);
+
+        return savedGame;
     }
 
     async addPointTeam1(id: number): Promise<GameEntity> {
@@ -85,7 +89,10 @@ export class GamesService {
             this.doSetOver(game);            
         }
 
-        return await this.gameRepository.save(game);
+        const savedGame = await this.gameRepository.save(game);
+        this.gamesGateway.socketUpdateGame(savedGame);
+
+        return savedGame;
     }
 
     async addPointTeam2(id: number): Promise<GameEntity> {
@@ -100,7 +107,10 @@ export class GamesService {
             this.doSetOver(game);            
         }
 
-        return await this.gameRepository.save(game);
+        const savedGame = await this.gameRepository.save(game);
+        this.gamesGateway.socketUpdateGame(savedGame);
+
+        return savedGame;
     }
 
     async resetScore(id: number): Promise<GameEntity> {
@@ -112,7 +122,10 @@ export class GamesService {
         game.setsScore = [];
         game.isGameOver = false;
 
-        return await this.gameRepository.save(game);
+        const savedGame = await this.gameRepository.save(game);
+        this.gamesGateway.socketUpdateGame(savedGame);
+
+        return savedGame;
     }
 
     isGameOver(game: GameEntity): boolean {

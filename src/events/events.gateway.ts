@@ -4,7 +4,7 @@ import { EventsService } from './events.service';
 
 import { CreateCounterDTO } from 'src/counters/dto/create-counter-dto';
 
-@WebSocketGateway({
+@WebSocketGateway(3002,{
   cors: {
     origin: '*',
   },
@@ -12,7 +12,7 @@ import { CreateCounterDTO } from 'src/counters/dto/create-counter-dto';
 export class EventsGateway {
   constructor( private readonly eventsService: EventsService) {}
 
-  @SubscribeMessage('message')
+  @SubscribeMessage('message2')
   handleMessage(client: any, payload: any): string {
     const createCounterDTO: CreateCounterDTO = new CreateCounterDTO();
     
