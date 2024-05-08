@@ -1,9 +1,9 @@
-import { 
+import {
   SubscribeMessage,
   WebSocketGateway,
   WebSocketServer,
- } from '@nestjs/websockets';
- import { GameEntity } from './game-entity';
+} from '@nestjs/websockets';
+import { GameEntity } from './game-entity';
 
 import { Server } from 'socket.io';
 @WebSocketGateway({
@@ -18,7 +18,7 @@ export class GamesGateway {
   socketUpdateGame(game: GameEntity) {
     this.server.emit('updateGame', game);
   }
- 
+
   @SubscribeMessage('message')
   handleMessage(client: any, payload: any): string {
     return 'Hello world!';
