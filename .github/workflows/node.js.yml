@@ -29,3 +29,11 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     #- run: npm test
+    deploy: ## <-- this is the new stuff
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: akhileshns/heroku-deploy@v3.12.12
+      with:
+        remote_branch: master
