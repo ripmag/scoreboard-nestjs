@@ -32,7 +32,7 @@ POST http://localhost:3000/games/2/addPointTeam2
 POST http://localhost:3000/games/4/reset
 
 ### create game
-GET http://localhost:3000/games/createGame
+GET http://localhost:8080/games/createGame
 Content-Type: application/json
 
 {
