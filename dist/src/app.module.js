@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
+const config_1 = require("@nestjs/config");
 const common_1 = require("@nestjs/common");
 const app_controller_1 = require("./app.controller");
 const app_service_1 = require("./app.service");
@@ -14,12 +15,12 @@ const counters_module_1 = require("./counters/counters.module");
 const logger_middleware_1 = require("./common/middleware/logger/logger.middleware");
 const counters_controller_1 = require("./counters/counters.controller");
 const typeorm_1 = require("@nestjs/typeorm");
-const data_source_1 = require("../DB/data-source");
 const events_gateway_1 = require("./events/events.gateway");
 const events_module_1 = require("./events/events.module");
 const events_service_1 = require("./events/events.service");
 const games_module_1 = require("./games/games.module");
 const games_controller_1 = require("./games/games.controller");
+const data_source_1 = require("../DB/data-source");
 let AppModule = class AppModule {
     configure(consumer) {
         consumer
@@ -31,7 +32,11 @@ exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            typeorm_1.TypeOrmModule.forRoot(data_source_1.dataSourceOptions),
+            config_1.ConfigModule.forRoot({
+                envFilePath: `.env.${process.env.NODE_ENV}`,
+                isGlobal: true,
+            }),
+            typeorm_1.TypeOrmModule.forRootAsync(data_source_1.asyncOptions),
             counters_module_1.CountersModule,
             events_module_1.EventsModule,
             games_module_1.GamesModule,

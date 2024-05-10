@@ -1,19 +1,22 @@
-import { DataSource, DataSourceOptions } from "typeorm";
+import { ConfigModule, ConfigService } from '@nestjs/config';
+import { TypeOrmModuleAsyncOptions } from "@nestjs/typeorm";
 
-export const dataSourceOptions: DataSourceOptions = {
-    type: 'postgres',
-    database: 'scoreboard',
-    host: 'localhost',
-    port: 5432,
-    username: 'postgres',
-    password: '00000000',
-    // entities: [Counter, GameEntity],
-    entities: ['dist/**/*-entity.js'],
-    migrations: ['dist/DB/migrations/*.js'],
-    synchronize: false,
-    // logging: true,
+export const asyncOptions: TypeOrmModuleAsyncOptions = {
+    imports: [ConfigModule],
+    inject: [ConfigService],
+    useFactory: (configService: ConfigService) => ({
+        type: 'postgres',
+        database: 'scoreboard',
+        host: configService.get('DB_HOST'),
+        // host: 'localhost',
+        // host: 'host.docker.internal',
+        port: 5432,
+        username: 'postgres',
+        password: '00000000',
+        entities: ['dist/**/*-entity.js'],
+        migrations: ['dist/DB/migrations/*.js'],
+        synchronize: false,
+    })
 }
 
-const dataSource = new DataSource(dataSourceOptions);
-
-export default dataSource;
+export default asyncOptions;
