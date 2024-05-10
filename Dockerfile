@@ -17,7 +17,7 @@ COPY . .
 ENV NODE_ENV production
 RUN npm run build
 
-EXPOSE 8080
+EXPOSE 80
 # ENV PORT=8080
 
 # Start the server using the production build
