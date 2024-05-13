@@ -7,8 +7,8 @@ async function bootstrap() {
     const app = await core_1.NestFactory.create(app_module_1.AppModule);
     app.useGlobalPipes(new common_1.ValidationPipe());
     app.enableCors();
-    const port = process.env.PORT || 3000;
-    await app.listen(port, () => console.log('PORT is ====================================', port));
+    const port = process.env.PORT || 8080;
+    await app.listen(8080, () => console.log('env.PORT is ====================================', port));
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
